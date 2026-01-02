@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú Hamburguesas</title>
+
+<style>
+:root{
+    --principal:#F49F00;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body{
+    background:black;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* FONDO */
+.fondo{
+    position:fixed;
+    inset:0;
+    background:url("assets/portada.jpg") center/cover no-repeat;
+    filter:brightness(75%);
+    z-index:-1;
+}
+
+/* CONTENEDOR GENERAL */
+.pantalla{
+    min-height:100vh;
+    padding:30px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    animation:fadeIn .6s ease;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* TITULO */
+.titulo img{
+    max-width:240px;
+    margin-bottom:40px;
+}
+
+/* BOTONES */
+.botones{
+    width:100%;
+    max-width:320px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.botones button{
+    padding:16px;
+    font-size:18px;
+    border-radius:30px;
+    border:2px solid white;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.botones button:hover{
+    background:var(--principal);
+    color:black;
+    box-shadow:0 0 20px var(--principal);
+}
+
+/* SECCIONES */
+.seccion{
+    display:none;
+    padding:80px 20px 40px;
+    min-height:100vh;
+    animation:fadeIn .5s ease;
+}
+
+/* BOTÓN REGRESAR */
+.regresar{
+    position:fixed;
+    top:15px;
+    left:15px;
+    background:rgba(0,0,0,.6);
+    border:2px solid white;
+    color:white;
+    padding:10px 14px;
+    border-radius:50%;
+    font-size:18px;
+    cursor:pointer;
+    z-index:10;
+}
+
+.regresar:hover{
+    background:var(--principal);
+    color:black;
+    box-shadow:0 0 15px var(--principal);
+}
+
+/* MENU */
+.menu-img{
+    max-width:100%;
+    border-radius:12px;
+}
+
+/* GALERIA */
+.galeria img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:10px;
+}
+
+.texto-galeria{
+    margin-bottom:30px;
+    font-size:15px;
+    opacity:.9;
+}
+
+/* WHATSAPP */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    font-size:28px;
+    padding:14px 16px;
+    border-radius:50%;
+    box-shadow:0 0 15px rgba(0,0,0,.5);
+    z-index:20;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="fondo"></div>
+
+<!-- INICIO -->
+<div class="pantalla" id="inicio">
+    <div class="titulo">
+        <img src="assets/titulomb.png" alt="Nombre del negocio">
+    </div>
+
+    <div class="botones">
+        <button onclick="abrir('menu')">🍔 MENÚ</button>
+        <button onclick="abrir('ubicacion')">📍 VER UBICACIÓN</button>
+        <button onclick="abrir('galeria')">🔥 CONOCE MB</button>
+    </div>
+</div>
+
+<!-- MENU -->
+<div class="seccion" id="menu">
+    <button class="regresar" onclick="volver()">←</button>
+    <h2>Nuestro Menú</h2><br>
+    <img src="assets/mbmenu.jpg" class="menu-img">
+</div>
+
+<!-- UBICACION -->
+<div class="seccion" id="ubicacion">
+    <button class="regresar" onclick="volver()">←</button>
+    <h2>Visítanos</h2><br>
+
+    <iframe 
+        src="https://www.google.com/maps?q=TU+DIRECCION_AQUI&output=embed"
+        width="100%" height="300" style="border-radius:15px;border:0;">
+    </iframe><br><br>
+
+    <a href="https://www.google.com/maps/dir/?api=1&destination=TU_DIRECCION_AQUI" target="_blank">
+        <button class="botones" style="width:100%">ABRIR NAVEGACIÓN</button>
+    </a>
+</div>
+
+<!-- GALERIA -->
+<div class="seccion" id="galeria">
+    <button class="regresar" onclick="volver()">←</button>
+    <h2>Conoce MB</h2><br>
+
+    <div class="galeria">
+        <img src="galeria1.jpg">
+        <p class="texto-galeria">Hamburguesas hechas con pasión.</p>
+
+        <img src="galeria2.jpg">
+        <p class="texto-galeria">Ingredientes frescos y de calidad.</p>
+
+        <img src="galeria3.jpg">
+        <p class="texto-galeria">Sabor que se queda contigo.</p>
+    </div>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" 
+   href="https://wa.me/523111449933" 
+   target="_blank">💬</a>
+
+<script>
+function abrir(id){
+    document.getElementById("inicio").style.display="none";
+    document.querySelectorAll(".seccion").forEach(s=>s.style.display="none");
+    document.getElementById(id).style.display="block";
+    window.scrollTo(0,0);
+}
+
+function volver(){
+    document.querySelectorAll(".seccion").forEach(s=>s.style.display="none");
+    document.getElementById("inicio").style.display="flex";
+    window.scrollTo(0,0);
+}
+</script>
+
+</body>
+</html>
+
